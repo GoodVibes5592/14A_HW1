@@ -1,0 +1,164 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="content-section">
+
+    			<form name="predictForm" method="POST" action="/predict" onsubmit="return validateForm()">
+
+    				 <div class="form-group">
+
+    				 		<div class="row">
+
+    				 	<div class="col-lg-6">
+
+    				 		<h1>Rossmann Store Sales Predictor</h1>
+
+    				 		<p> Rossmann operates over 3,000 drug stores in 7 European countries. Currently, Rossmann store managers are tasked with predicting their daily sales for up to six weeks in advance. Store sales are influenced by many factors, including promotions, competition, school and state holidays, seasonality, and locality. With thousands of individual managers predicting sales based on their unique circumstances, the accuracy of results can be quite varied.</p>
+
+    				 		<h1>
+							  {% if label %} {{ label }} {% endif %}
+							</h1>
+
+							  <br>
+							  <button class="btn btn-lg btn-primary" type="submit">
+							  	Predict
+							  </button>
+
+						</div>
+
+						<div class="col-lg-6">
+              <div class="row">
+							<div class="col-lg-6 mx-auto">
+							<br>
+
+                <!-- Part 2.1-->
+                
+                <!--  YOUR CODE START HERE: Month Dropdown--> 
+                <div>
+                  <select name="month" id="month" class="dropdownmenu">
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                  </select>
+                  <label for="month">Month</label><br>
+                  <p><small>Month</small></p>
+                </div>
+                
+
+                <!--  YOUR CODE START HERE: Promo Dropdown-->
+                <div>
+                  <select name="promo" id="promo" class="dropdownmenu">
+                    <option value="0">No Promo</option>
+                    <option value="1">Promo</option>
+                  </select>
+                  <label for="promo">Promo</label>
+                  <p><small>store running a Promo = 0/1 </small></p>
+                </div>
+						    
+
+                <!--  YOUR CODE START HERE: State Holiday Dropdown-->
+                <div>
+                  <select name="state_holiday" id="state_holiday" class="dropdownmenu">
+                    <option value="1">None</option>
+                    <option value="2">Public Holiday</option>
+                    <option value="3">Easter Holiday</option>
+                    <option value="4">Christmas</option>
+                  </select>
+                  <label for="state_holiday">State Holiday</label><br>
+                  <p><small>1 = None | 2 = public holiday <br> 3 = Easter holiday | 4 = Christmas</small></p>
+                </div>
+
+						    
+                <!--  YOUR CODE START HERE: Assortment-->
+                <div>
+                  <select name="assortment" id="assortment" class="dropdownmenu">
+                    <option value="1">Basic</option>
+                    <option value="2">Extra</option>
+                    <option value="3">Extended</option>
+                  </select>
+                  <label for="assortment">Assortment</label><br>
+                  <p><small>1 = basic | 2 = extra | 3 = extended</small></p>
+                </div>
+
+
+						    <div class="input-group">
+								  <div class="input-group-prepend">
+								    <span class="input-group-text">Store #</span>
+								  </div>
+								  <input type="text" name="store" id="store" value="1" class="form-control" aria-label="With textarea">
+								</div>
+                <p><small>Please input integers between 1 - 1115 and exclude 291, 622 or 879 <br>
+                  as these stores don't have records in the training dataset.</small></p>
+								</div>
+
+                <div class="col-lg-6 mx-auto">
+                  <br>
+
+                  <!--  YOUR CODE START HERE: Day of the Week-->
+  						    <div>
+                    <select name="day_of_the_week" id="day_of_the_week" class="dropdownmenu">
+                      <option value="1">Sunday</option>
+                      <option value="2">Monday</option>
+                      <option value="3">Tuesday</option>
+                      <option value="4">Wednesday</option>
+                      <option value="5">Thursday</option>
+                      <option value="6">Friday</option>
+                      <option value="7">Saturday</option>
+                    </select>
+                    <label for="day_of_the_week">Day of the Week</label><br>
+                    <p><small>Day of Week</small></p>
+                  </div>
+
+                  <!--  YOUR CODE START HERE: Promo2-->
+                  <div>
+                    <select name="promo2" id="promo2" class="input_promo2">
+                      <option value="0">No Promo</option>
+                      <option value="1">Promo</option>
+                    </select>
+                    <label for="promo2">Promo2</label>
+                    <p><small>store running a recurrent Promo = 0/1 </small></p>
+                  </div>
+  						    
+
+                  <!--  YOUR CODE START HERE: School Holiday-->
+  						    <div>
+                    <select name="school_holiday" id="school_holiday" class="dropdownmenu">
+                      <option value="1">School Holiday</option>
+                      <option value="0">None</option>
+                    </select>
+                    <label for="school_holiday">School Holiday</label>
+                    <p><small>0 = None <br> 1 = school holiday</small></p>
+                  </div>
+                  
+                  <div>
+                    <select name="store_type" id="store_type" class="dropdownmenu">
+                      <option value="1">a</option>
+                      <option value="2">b</option>
+                      <option value="3">c</option>
+                      <option value="4">d</option>
+                    </select>
+                    <label for="store_type">Store Type</label><br>
+                    <p><small>1 = a | 2 = b <br> 3 = c | 4 = d</small></p>
+                  </div>
+  						    
+                </div>
+
+						</div>
+          </div>
+          <!-- End of Part 2.1-->
+
+  					</div>
+    			</div>
+    		</form>
+</section>
+
+{% endblock %}
